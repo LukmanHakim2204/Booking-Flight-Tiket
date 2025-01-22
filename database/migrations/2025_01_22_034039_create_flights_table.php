@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
             $table->string('flight_number');
-            $table->foreignId('airlane_id')->references('id')->on('airlanes');
+            $table->foreignId('airlane_id')->references('id')->on('airlanes')->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
