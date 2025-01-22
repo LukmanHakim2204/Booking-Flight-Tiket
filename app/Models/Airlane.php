@@ -16,4 +16,5 @@ class Airlane extends Model
         'city',
         'country',
     ]; //
+
 }
