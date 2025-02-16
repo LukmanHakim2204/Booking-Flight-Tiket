@@ -16,8 +16,9 @@ return new class extends Migration
             $table->foreign('flight_id')->references('id')->on('flights');
             $table->integer('row');
             $table->integer('column');
-            $table->enum('class_type',['']);
+            $table->enum('class_type', ['economy', 'business']);
             $table->boolean('is_available');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

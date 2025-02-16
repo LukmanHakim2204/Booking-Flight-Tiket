@@ -16,6 +16,8 @@ return new class extends Migration
             $table->integer('sequence');
             $table->foreignId('flight_id')->references('id')->on('flights');
             $table->foreignId('airport_id')->references('id')->on('airports');
+            $table->dateTime('time');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

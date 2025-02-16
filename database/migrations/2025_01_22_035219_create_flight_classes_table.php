@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('flight_classes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('flight_id')->references('id')->on('flights');
-            $table->enum('class_type', ['']);
+            $table->foreignId('flight_id')->references('id')->on('flights')->onDelete('cascade');
+            $table->enum('class_type', ['economy', 'business']);
             $table->integer('price');
             $table->integer('total_seats');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
