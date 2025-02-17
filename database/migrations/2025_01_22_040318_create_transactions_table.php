@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->interger('number_of_passengers');
-            $table->foreignId('promo_code_id')->references('id')->on('promo_codes')->onDelete('cascade');
+            $table->foreignId('promo_code_id')->nullable()->references('id')->on('promo_codes')->onDelete('cascade');
             $table->enum('payment_status', ['pending', 'paid', 'failed'])->default('pending');
             $table->integer('subtotal')->nullable();
             $table->integer('grandtotal')->nullable();
