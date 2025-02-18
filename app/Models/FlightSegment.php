@@ -18,4 +18,14 @@ class FlightSegment extends Model
         'airport_id',
         'time',
     ];
+
+    public function flight()
+    {
+        return $this->belongsTo(Flight::class);
+    }
+
+    public function airport()
+    {
+        return $this->belongsTo(Airport::class);
+    }
 }

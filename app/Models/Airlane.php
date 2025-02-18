@@ -17,4 +17,8 @@ class Airlane extends Model
         'country',
     ]; //
 
+    public function flights()
+    {
+        return $this->hasMany(Flight::class);
+    }
 }

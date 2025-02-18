@@ -18,4 +18,13 @@ class TransactionPassenger extends Model
         'date_of_brith',
         'nationality',
     ];
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
+
+    public function seat()
+    {
+        return $this->belongsTo(FlightSeat::class);
+    }
 }

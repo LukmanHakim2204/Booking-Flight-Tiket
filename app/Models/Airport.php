@@ -13,6 +13,9 @@ class Airport extends Model
         'code',
         'name',
         'logo',
-    ]; //
-
+    ];
+    public function segments()
+    {
+        return $this->hasMany(FlightSegment::class);
+    }
 }

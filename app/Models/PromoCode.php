@@ -20,4 +20,9 @@ class PromoCode extends Model
         'is_used',
     ];
 
+
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
+    }
 }
