@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('code');
             $table->foreignId('flight_id')->references('id')->on('flights')->onDelete('cascade');
-            $table->foreignId('flight_class_id')->references('id')->on('flight_class')->onDelete('cascade');
+            $table->foreignId('flight_class_id')->references('id')->on('flight_classes')->onDelete('cascade');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->interger('number_of_passengers');
+            $table->integer('number_of_passengers');
             $table->foreignId('promo_code_id')->nullable()->references('id')->on('promo_codes')->onDelete('cascade');
             $table->enum('payment_status', ['pending', 'paid', 'failed'])->default('pending');
             $table->integer('subtotal')->nullable();
