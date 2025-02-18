@@ -10,9 +10,12 @@ class Airport extends Model
 {
     use HasFactory,SoftDeletes;
     protected $fillable = [
-        'code',
+        'iata_code',
         'name',
-        'logo',
+        'image',
+        'city',
+        'country',
+    
     ];
     public function segments()
     {

@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AirportResource\Pages;
-use App\Filament\Resources\AirportResource\RelationManagers;
-use App\Models\Airport;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Airport;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\AirportResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\AirportResource\RelationManagers;
 
 class AirportResource extends Resource
 {
@@ -23,21 +24,37 @@ class AirportResource extends Resource
     {
         return $form
             ->schema([
-                //
+                FileUpload::make('image')
+                    ->image()
+                    ->directory('airport')
+                    ->required()
+                    ->columnSpan(2),
+                Forms\Components\TextInput::make('iata_code')
+                    ->required(),
+                Forms\Components\TextInput::make('name')
+                    ->required(),
+                Forms\Components\TextInput::make('city')
+                    ->required(),
+                Forms\Components\TextInput::make('country')
+                    ->required(),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                //
+            ->columns([Tables\Columns\ImageColumn::make('image'),
+            Tables\Columns\TextColumn::make('iata_code'),
+            Tables\Columns\TextColumn::make('name'),
+            Tables\Columns\TextColumn::make('city'),
+            Tables\Columns\TextColumn::make('country'),
             ])
             ->filters([
                 //
             ])
-            ->actions([
+            ->actions([Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+            Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

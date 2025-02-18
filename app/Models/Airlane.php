@@ -10,11 +10,9 @@ class Airlane extends Model
 {
     use HasFactory,SoftDeletes;
     protected $fillable = [
-        'iata_code',
+        'code',
         'name',
-        'image',
-        'city',
-        'country',
+        'logo',
     ]; //
 
     public function flights()
