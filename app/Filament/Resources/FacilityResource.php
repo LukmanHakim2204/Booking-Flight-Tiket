@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AirlaneResource\Pages;
-use App\Filament\Resources\AirlaneResource\RelationManagers;
-use App\Models\Airlane;
+use App\Filament\Resources\FacilityResource\Pages;
+use App\Filament\Resources\FacilityResource\RelationManagers;
+use App\Models\Facility;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class AirlaneResource extends Resource
+class FacilityResource extends Resource
 {
-    protected static ?string $model = Airlane::class;
+    protected static ?string $model = Facility::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,15 +23,15 @@ class AirlaneResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\FileUpload::make('logo')
+                Forms\Components\FileUpload::make('image')
                     ->image()
-                    ->directory('airlane')
+                    ->directory('facility')
                     ->required()
-                    ->columnSpan(2),
-                Forms\Components\TextInput::make('code')
-                    ->required(),
+                    ->columnSpanFull(),
                 Forms\Components\TextInput::make('name')
                     ->required(),
+                Forms\Components\TextInput::make('description')
+                    ->required()
             ]);
     }
 
@@ -39,9 +39,9 @@ class AirlaneResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('logo'),
-                Tables\Columns\TextColumn::make('code'),
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('description'),
             ])
             ->filters([
                 //
@@ -68,9 +68,9 @@ class AirlaneResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAirlanes::route('/'),
-            'create' => Pages\CreateAirlane::route('/create'),
-            'edit' => Pages\EditAirlane::route('/{record}/edit'),
+            'index' => Pages\ListFacilities::route('/'),
+            'create' => Pages\CreateFacility::route('/create'),
+            'edit' => Pages\EditFacility::route('/{record}/edit'),
         ];
     }
 }

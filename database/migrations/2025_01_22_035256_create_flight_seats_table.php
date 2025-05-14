@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('flight_seats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('flight_id')->constrained('flights')->cascadeOnDelete();
+            $table->string('name');
             $table->integer('row');
             $table->integer('column');
             $table->enum('class_type', ['economy', 'business']);
